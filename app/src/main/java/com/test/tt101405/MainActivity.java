@@ -67,6 +67,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onLocationChanged(Location location) {
                         Log.d("LOC", location.getLatitude() + "," + location.getLongitude() );
+
+                        // 25.0338998,121.5648854
+                        Location loc101 = new Location("MINE");
+                        loc101.setLatitude(25.0338);
+                        loc101.setLongitude(121.56488);
+
+                        float f1 = location.distanceTo(loc101);
+                        Log.d("LOC", "離 101 有：" + f1 + "公尺遠");
+
                     }
 
                     @Override
