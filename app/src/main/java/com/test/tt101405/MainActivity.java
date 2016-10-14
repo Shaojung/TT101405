@@ -3,6 +3,8 @@ package com.test.tt101405;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -12,6 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -75,6 +81,16 @@ public class MainActivity extends AppCompatActivity {
 
                         float f1 = location.distanceTo(loc101);
                         Log.d("LOC", "離 101 有：" + f1 + "公尺遠");
+
+                        Geocoder gc = new Geocoder(MainActivity.this, Locale.TRADITIONAL_CHINESE);
+                        try {
+                            List<Address> lstAddress = gc.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                            Log.d("LOC", lstAddress.get(0).getAddressLine(0));
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
 
                     }
 
